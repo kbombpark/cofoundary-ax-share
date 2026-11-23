@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>AX Advise 1기 가격안</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap">
+<style>
+/* Layout: single column (max 920px), navy hero card, condition panel, result tables in scroll boxes; Cofoundary Brand System (company-landing): navy #050B16, brand blue #1E70FF, Plus Jakarta Sans + JetBrains Mono, Pretendard for Korean */
+:root{
+  --bg:#F8FAFC; --surface:#FFFFFF; --ink:#050B16; --muted:#4A5768; --line:#E2E8F0;
+  --accent:#1E70FF; --accent-soft:#E8F0FF; --navy:#050B16; --on-navy:#F8FAFC; --on-navy-2:#8E9CAE; --navy-eyebrow:#4D8DFF;
+  --glow:rgba(30,112,255,.3);
+  --good:#15803D; --good-soft:#E7F6EC; --warn:#B45309; --warn-soft:#FEF3E2; --bad:#DC2626; --bad-soft:#FDECEC;
+  --f-display:"Plus Jakarta Sans","Pretendard Variable",Pretendard,system-ui,sans-serif;
+  --f-body:"Pretendard Variable",Pretendard,"Plus Jakarta Sans",system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;
+  --f-num:"JetBrains Mono",ui-monospace,"SFMono-Regular",monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#000000; --surface:#050B16; --ink:#FFFFFF; --muted:#8E9CAE; --line:#1A2433;
+  --accent:#4D8DFF; --accent-soft:#0B1A33; --navy:#050B16; --on-navy:#FFFFFF; --on-navy-2:#8E9CAE;
+  --good:#4ADE80; --good-soft:#0F2A1A; --warn:#FBBF24; --warn-soft:#2A2010; --bad:#F87171; --bad-soft:#2E1414; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#000000; --surface:#050B16; --ink:#FFFFFF; --muted:#8E9CAE; --line:#1A2433;
+  --accent:#4D8DFF; --accent-soft:#0B1A33; --navy:#050B16; --on-navy:#FFFFFF; --on-navy-2:#8E9CAE;
+  --good:#4ADE80; --good-soft:#0F2A1A; --warn:#FBBF24; --warn-soft:#2A2010; --bad:#F87171; --bad-soft:#2E1414; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.7;letter-spacing:-0.01em;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding-block:40px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:44px}
+header{display:flex;flex-direction:column;gap:12px;background:var(--navy);color:var(--on-navy);border:1px solid var(--line);border-radius:16px;padding:36px 32px;background-image:radial-gradient(60% 90% at 90% 0%,var(--glow),transparent 70%)}
+header .eyebrow{color:var(--navy-eyebrow)}
+header .lead{color:var(--on-navy-2)}
+.eyebrow{font-family:var(--f-num);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--f-display);font-weight:800;letter-spacing:-0.02em;font-size:clamp(28px,5vw,40px);line-height:1.25;margin:0;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:700;font-size:22px;margin:0;text-wrap:balance}
+p{margin:0;max-width:68ch}
+.lead{font-size:16px;color:var(--muted)}
+section{display:flex;flex-direction:column;gap:16px;min-width:0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:18px}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px 20px}
+.ctl{display:flex;flex-direction:column;gap:6px;min-width:0}
+.ctl label,.ctl .lbl{font-size:14px;font-weight:700;color:var(--ink)}
+.ctl small{color:var(--muted);font-size:12.5px;line-height:1.45}
+select,input[type=number]{font:inherit;font-family:var(--f-num);font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:100%}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{font:inherit;font-size:13px;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.seg button[aria-pressed=true]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:700}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:var(--muted)}
+.chk input{margin-top:5px;accent-color:var(--accent)}
+.headline{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.stat{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat .k{font-size:13px;color:var(--muted)}
+.stat .v{font-family:var(--f-num);font-size:28px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.3}
+.stat .s{font-size:12.5px;color:var(--muted)}
+.stat.hi{border-top-color:var(--accent)}
+.stat.hi .v{color:var(--accent)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
+th,td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;white-space:nowrap}
+th{font-weight:500;color:var(--muted);font-size:12.5px;background:color-mix(in srgb,var(--bg) 60%,var(--surface))}
+tr:last-child td{border-bottom:0}
+.num{text-align:right;font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.sub{display:block;font-size:12px;color:var(--muted);font-family:var(--f-body)}
+.pill{display:inline-block;padding:1px 9px;border-radius:999px;font-size:12.5px;font-family:var(--f-num);font-variant-numeric:tabular-nums;border:1px solid transparent}
+.p-pos{background:var(--good-soft);color:var(--good)}
+.p-warn{background:var(--warn-soft);color:var(--warn)}
+.p-neg{background:var(--bad-soft);color:var(--bad)}
+tr.cur td{background:var(--accent-soft)}
+.legend{display:flex;flex-wrap:wrap;gap:10px 16px;font-size:12.5px;color:var(--muted);align-items:center}
+ul.notes{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px;max-width:72ch;font-size:14.5px}
+footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px}
+@media (max-width:560px){header{padding:28px 22px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<style>
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card.off{opacity:.45}
+.card-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.card-h h3{font-family:var(--f-display);font-size:17px;font-weight:700;margin:0;line-height:1.35}
+.card-h .note{display:block;font-size:12.5px;color:var(--muted);font-weight:400;font-family:var(--f-body)}
+.big{font-family:var(--f-num);font-size:30px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.big.good{color:var(--good)}.big.warn{color:var(--warn)}.big.bad{color:var(--bad)}
+.big-k{font-size:12.5px;color:var(--muted)}
+.bars{display:flex;flex-direction:column;gap:7px}
+.bar{display:grid;grid-template-columns:62px 1fr 92px;gap:8px;align-items:center;font-size:12.5px}
+.bar .t{color:var(--muted)}
+.track{height:10px;border-radius:999px;background:var(--line);position:relative;overflow:hidden}
+.fill{position:absolute;inset:0 auto 0 0;border-radius:999px;background:var(--accent)}
+.fill.warn{background:var(--warn)}.fill.bad{background:var(--bad)}
+.bar .v{font-family:var(--f-num);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar .v small{color:var(--muted);font-family:var(--f-body)}
+.inc{display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--muted);white-space:nowrap;cursor:pointer}
+.inc input{accent-color:var(--accent)}
+.safe{background:var(--navy);color:var(--on-navy);border-radius:12px;padding:20px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;background-image:radial-gradient(60% 120% at 100% 0%,var(--glow),transparent 70%)}
+.safe .k{font-size:13px;color:var(--on-navy-2)}
+.safe .v{font-family:var(--f-num);font-size:30px;font-weight:700;color:var(--on-navy);line-height:1.3}
+.safe .s{font-size:12.5px;color:var(--on-navy-2)}
+.safe .v.accent{color:var(--navy-eyebrow)}
+td.best{font-weight:700}
+.def{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline;margin-top:6px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12)}
+.def .eq{font-family:var(--f-num);font-size:clamp(22px,4vw,28px);font-weight:700;color:var(--on-navy)}
+.def .eq b{color:var(--navy-eyebrow)}
+.def ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--on-navy-2)}
+.def li b{color:var(--on-navy);font-weight:700}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Cofoundary · AX Advise · 1기 가격안 · 2026년 11월</div>
+  <h1>AX Advise 1기 가격안</h1>
+  <div class="def" aria-label="크레딧 정의">
+    <div class="eq">코치 1시간 = <b>1~3크레딧</b></div>
+    <ul><li>일반 코치 <b>1cr</b></li><li>시니어 코치 <b>2cr</b></li><li>마스터 코치 <b>3cr</b></li></ul>
+  </div>
+</header>
+
+<section aria-labelledby="h-price">
+  <h2 id="h-price">상품별 가격</h2>
+  <p class="lead">스타터 크레딧 단가 30만 원에서 시작해 단가 30 · 27 · 24 · 22 · 20만 원으로 내려가고, 엔터프라이즈는 2,000만 원을 유지합니다. 회사 몫은 정가로 팔고 크레딧을 모두 썼을 때 기준입니다.</p>
+  <p class="lead">사용 기한은 결제일부터 셉니다. 일반 코치 기준으로 한 달 평균 2~8시간 안팎을 쓰는 속도에 맞췄고, 엔터프라이즈는 분기 AX 점검 4번이 들어가도록 12개월로 했습니다. 기한이 지난 크레딧은 소멸하고, 기한 안에 Sprint · Agent를 계약하면 남은 크레딧을 계약금으로 돌릴 수 있습니다.</p>
+  <div class="scroll"><table id="tPrice"></table></div>
+</section>
+
+<section aria-labelledby="h-coach">
+  <h2 id="h-coach">코치 보수와 경력별 크레딧 차감 (안)</h2>
+  <p class="lead">코치는 차감된 크레딧 1개당 10만 원을 받습니다. 경력이 높은 코치는 1시간에 크레딧을 더 많이 차감하므로, 시간당 보수도 그만큼 커집니다. 회사가 크레딧 1개에서 남기는 돈은 코치 등급과 상관없이 같습니다.</p>
+  <div class="scroll"><table id="tCoach"></table></div>
+</section>
+
+<section aria-labelledby="h-welcome">
+  <h2 id="h-welcome">AX Sprint 수강 웰컴 크레딧 (1기 수강생 포함)</h2>
+  <p class="lead">AX Sprint(4주 · 450만 원)를 수강하면 Advise 2cr를 웰컴 크레딧으로 드립니다. Sprint가 끝난 뒤 실행 단계에서 코치에게 바로 물어볼 수 있게 해, Advise 상품 구매로 이어지게 하는 장치입니다.</p>
+  <div class="scroll"><table>
+    <tr><th>항목</th><th>내용</th></tr>
+    <tr><td>제공</td><td><b>2cr</b><span class="sub">일반 코치 2시간 · 시니어 1시간 분량</span></td></tr>
+    <tr><td>사용 기한</td><td>Sprint 수강 시작일부터 3개월<span class="sub">1기 수강생은 2027년 1월 31일까지 (1기 AX Advise 안내와 같음)</span></td></tr>
+    <tr><td>회사 비용</td><td class="num" style="text-align:left">약 22만 원<span class="sub">코치 보수 2cr × 10만 + 운영비 2만 · Sprint 매출의 약 5%</span></td></tr>
+    <tr><td>Advise 구매 시</td><td>남은 웰컴 크레딧은 구매한 상품에 더해지고, 그 상품의 사용 기한을 따릅니다</td></tr>
+  </table></div>
+</section>
+
+<section aria-labelledby="h-gen1">
+  <h2 id="h-gen1">1기 혜택: 30% 할인 또는 크레딧 추가</h2>
+  <p class="lead">엔터프라이즈는 분기 점검 비용 때문에 30% 할인을 고르면 회사 몫이 관리비 · 예비비 10%를 밑돕니다. 추가 크레딧은 할인과 같은 가치(고객이 크레딧 1개에 내는 돈이 같아지는 만큼)로 계산해 반올림했습니다. 회사 몫은 추가 크레딧까지 모두 쓴다고 가정합니다.</p>
+  <div class="scroll"><table id="tGen1"></table></div>
+  <div class="legend"><span><span class="pill p-pos">20% 이상</span> 넉넉함</span><span><span class="pill p-warn">10~20%</span> 빠듯함</span><span><span class="pill p-neg">10% 미만</span> 관리비 · 예비비 10% 미달</span><span>추가 크레딧도 상품의 사용 기한 안에 쓰고, 다른 혜택과 겹치면 큰 것 하나만 적용 · 2027년 1월 31일까지</span></div>
+</section>
+
+<section class="panel" aria-labelledby="h-cond">
+  <h2 id="h-cond">조건</h2>
+  <div class="controls">
+    <div class="ctl">
+      <label for="gen1">1기 할인율 (%)</label>
+      <input id="gen1" type="number" min="0" max="60" step="5" value="30">
+      <small>추가 크레딧은 이 할인과 같은 가치로 바뀝니다.</small>
+    </div>
+    <div class="ctl">
+      <label for="pay">코치 보수 (크레딧당, 원)</label>
+      <input id="pay" type="number" min="0" step="10000" value="100000">
+      <small>원천징수 3.3%는 코치 보수에서 떼므로 회사 비용에 넣지 않습니다.</small>
+    </div>
+    <div class="ctl">
+      <label for="floor">관리비 · 예비비 (%)</label>
+      <input id="floor" type="number" min="0" max="50" step="1" value="10">
+      <small>회사 몫에서 관리비 · 예비비로 남길 비율입니다. 회사 몫이 이보다 낮으면 빨간색으로 표시합니다.</small>
+    </div>
+    <div class="ctl">
+      <label for="ops">세션당 운영비 (원)</label>
+      <input id="ops" type="number" min="0" step="1000" value="10000">
+      <small>크레딧 1개마다 든다고 보수적으로 잡았습니다.</small>
+    </div>
+    <div class="ctl">
+      <label for="fee">결제 수수료 (%)</label>
+      <input id="fee" type="number" min="0" max="10" step="0.1" value="0">
+      <small>계좌이체 0 · 카드 약 3.</small>
+    </div>
+    <div class="ctl">
+      <label for="use">크레딧 사용률 (%)</label>
+      <input id="use" type="number" min="10" max="100" step="5" value="100">
+      <small>100이 가장 보수적입니다.</small>
+    </div>
+    <div class="ctl">
+      <span class="lbl">엔터프라이즈 포함 혜택</span>
+      <label class="chk"><input id="check" type="checkbox" checked> 분기 AX 점검 비용 넣기 (멘토 2명 × 2시간 × 4분기 = 16크레딧)</label>
+    </div>
+  </div>
+</section>
+
+<footer>Cofoundary · AX Advise 1기 가격안 · 내부 검토용 · 2026년 11월 23일 기준</footer>
+</div>
+
+<script>
+const BASE=[{n:"스타터",cr:5,m:3},{n:"베이직",cr:10,m:6},{n:"그로스",cr:20,m:6},{n:"프로",cr:50,m:12},{n:"엔터프라이즈",cr:100,m:12,check:true}];
+const LADDERS={
+  rec:{label:"확정",p:[300000,270000,240000,220000,200000]}
+};
+const LEVELS=[{n:"일반 코치",d:1,note:"경력 기준 정할 것"},{n:"시니어 코치",d:2,note:"경력 기준 정할 것"},{n:"마스터 코치",d:3,note:"경력 기준 정할 것"}];
+const $=id=>document.getElementById(id);
+const won=v=>Math.round(v).toLocaleString("ko-KR");
+const man=v=>{const m=v/10000;return (Number.isInteger(m)?m.toLocaleString("ko-KR"):m.toFixed(1))+"만";};
+const pc=v=>(v*100).toFixed(0)+"%";
+let ladder="rec";
+function num(id,d){const v=parseFloat($(id).value);return isNaN(v)?d:v;}
+function params(){return{d:num("gen1",30)/100,pay:num("pay",100000),floor:num("floor",10)/100,ops:num("ops",10000),fee:num("fee",0)/100,use:Math.max(.1,num("use",100)/100),check:$("check").checked};}
+// 회사 몫률 (판매가 대비)
+function net(t,c,factor,bonus){const C=c.pay+c.ops, L=t.p*t.cr*factor, extra=(t.check&&c.check)?16*C:0;return 1-c.fee-(C*(t.cr+bonus)*c.use+extra)/L;}
+function maxDisc(t,c){const C=c.pay+c.ops, keep=1-c.fee-c.floor, extra=(t.check&&c.check)?16*C:0;return keep<=0?-1:1-(C*t.cr*c.use+extra)/(t.p*t.cr*keep);}
+function pill(v,c){const k=v<c.floor?"p-neg":(v>=.2?"p-pos":"p-warn");return `<span class="pill ${k}">${pc(v)}</span>`;}
+function render(){
+  const c=params(), L=LADDERS[ladder];
+  const T=BASE.map((t,i)=>({...t,p:L.p[i]}));
+  const bRate=c.d<1?1/(1-c.d)-1:0;
+  // price
+  let h=`<tr><th>상품</th><th class="num">크레딧</th><th class="num">크레딧 단가</th><th class="num">정가</th><th class="num">사용 기한<span class="sub">결제일부터</span></th><th class="num">스타터 대비</th><th class="num">앞 단계보다</th><th class="num">회사 몫</th><th class="num">1기 최대 할인<span class="sub">관리비 · 예비비 유지</span></th></tr>`;
+  T.forEach((t,i)=>{
+    const step=i?1-t.p/T[i-1].p:0;
+    h+=`<tr><td>${t.n}${t.check?'<span class="sub">2인 · 분기 AX 점검 포함</span>':''}</td><td class="num">${t.cr}cr</td><td class="num">${man(t.p)}</td><td class="num"><b>${won(t.p*t.cr/10000)}만</b></td><td class="num">${t.m}개월<span class="sub">월 평균 ${(t.cr/t.m).toFixed(1).replace(/\.0$/,"")}시간</span></td><td class="num">${i?"−"+pc(1-t.p/T[0].p):"기준"}</td><td class="num">${i?"−"+pc(step):"—"}</td><td class="num">${pill(net(t,c,1,0),c)}</td><td class="num">${(()=>{const m=maxDisc(t,c);return m>0?pc(m):"여유 없음";})()}</td></tr>`;
+  });
+  $("tPrice").innerHTML=h;
+  // coach
+  h=`<tr><th>코치 등급</th><th class="num">1시간 차감</th><th class="num">코치 시간당 보수</th>${T.map(t=>`<th class="num">${t.n}<span class="sub">${t.cr}cr로 받는 시간</span></th>`).join("")}</tr>`;
+  LEVELS.forEach(l=>{
+    h+=`<tr><td>${l.n}<span class="sub">${l.note}</span></td><td class="num">${l.d}cr</td><td class="num">${man(c.pay*l.d)}</td>${T.map(t=>{const hrs=t.cr/l.d;return `<td class="num">${Number.isInteger(hrs)?hrs:hrs.toFixed(1)}시간<span class="sub">고객 시간당 ${man(t.p*l.d)}</span></td>`;}).join("")}</tr>`;
+  });
+  $("tCoach").innerHTML=h;
+  // gen1
+  h=`<tr><th>상품</th><th class="num">정가</th><th class="num">${pc(c.d)} 할인가</th><th class="num">회사 몫<span class="sub">할인 시</span></th><th class="num">추가 크레딧<span class="sub">정가 그대로</span></th><th class="num">회사 몫<span class="sub">추가 지급 시</span></th></tr>`;
+  const rows=T.map(t=>{const b=Math.round(t.cr*bRate);return {t,b,nd:net(t,c,1-c.d,0),nb:net(t,c,1,b)};});
+  rows.forEach(({t,b,nd,nb})=>{
+    const Lp=t.p*t.cr;
+    const dCell=`<td class="num"><b>${won(Lp*(1-c.d)/10000)}만</b><span class="sub">크레딧당 ${man(t.p*(1-c.d))}</span></td><td class="num">${pill(nd,c)}</td>`;
+    h+=`<tr><td>${t.n}<span class="sub">${t.cr}cr</span></td><td class="num">${won(Lp/10000)}만</td>${dCell}<td class="num"><b>+${b}cr</b> → ${t.cr+b}cr<span class="sub">크레딧당 ${man(Lp/(t.cr+b))}</span></td><td class="num">${pill(nb,c)}</td></tr>`;
+  });
+  $("tGen1").innerHTML=h;
+  // summary
+  const dRows=rows.filter(r=>!r.t.check);
+  const minD=Math.min(...dRows.map(r=>r.nd)), minB=Math.min(...rows.map(r=>r.nb));
+  const worstD=dRows.find(r=>r.nd===minD).t.n, worstB=rows.find(r=>r.nb===minB).t.n;
+  const okD=dRows.filter(r=>r.nd>=c.floor).length, okB=rows.filter(r=>r.nb>=c.floor).length;
+  const ent=rows.find(r=>r.t.check);
+  if($("safe"))$("safe").innerHTML=
+    `<div><span class="k">${pc(c.d)} 할인을 고르면</span><div class="v ${okD===dRows.length?"accent":""}">${okD}/${dRows.length} 상품</div><span class="s">스타터~프로. 관리비 · 예비비 ${pc(c.floor)} 이상, 가장 낮은 곳은 ${worstD} ${pc(minD)}</span></div>`+
+    `<div><span class="k">크레딧 추가를 고르면 (+${pc(bRate)})</span><div class="v ${okB===5?"accent":""}">${okB}/5 상품</div><span class="s">가장 낮은 곳은 ${worstB} ${pc(minB)}</span></div>`+
+    `<div><span class="k">엔터프라이즈 1기 혜택</span><div class="v">+${ent.b}cr</div><span class="s">${ent.t.cr}cr → ${ent.t.cr+ent.b}cr, 회사 몫 ${pc(ent.nb)} · 코치 보수 ${man(c.pay)}/cr</span></div>`;
+}
+document.querySelectorAll(".panel input").forEach(el=>el.addEventListener("input",render));
+render();
+</script>
+
+</html>
